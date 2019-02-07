@@ -194,7 +194,7 @@ public class BuildMojo extends AbstractDockerMojo {
       for (String image : cacheFrom) {
         try {
           if (pullNewerImage || !imageExistLocally(dockerClient, image)) {
-            dockerClient.pull(image);
+            dockerClient.pull(image, progressHandler);
           }
           log.info(MessageFormat.format("Build will use image {0} for cache-from", image));
           cacheFromExistLocally.add(image);
